@@ -2,8 +2,10 @@
 
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/cybersentinel-hero-poster.png">
-  <img src="docs/assets/cybersentinel-hero.gif" alt="CyberSentinel: rotating 3D wireframe shield with floating discovery and evidence panels" width="1200">
+  <img src="docs/assets/cybersentinel-hero.gif" alt="CyberSentinel: a rotating 3D threat globe surrounded by moving discovery, evidence, risk, and response cards" width="1200">
 </picture>
+
+<sub>Looping 3D illustration with a rotating threat globe and moving signal cards; motion is illustrative, not live monitoring data.</sub>
 
 **Brand impersonation & phishing intelligence, in one workspace.**
 
@@ -25,7 +27,7 @@ Discover lookalike domains, investigate the evidence, and prepare a confident re
   <img src="docs/assets/dashboard-demo.png" alt="Glass dashboard showing severity, brand exposure, and discovery activity with synthetic example data" width="1200">
 </a>
 
-<sub>Illustrative demo workspace using synthetic `.example` domains. Motion graphics are illustrative; operational telemetry comes from the application's monitoring service.</sub>
+<sub>Illustrative dashboard workspace using synthetic `.example` domains; it does not display live monitoring telemetry.</sub>
 
 <table>
 <tr>
@@ -196,7 +198,7 @@ npm ci
 npm run build
 ```
 
-The README animations are original, locally rendered GIFs. Regenerate them from the repository root:
+The README animations are original, locally rendered GIFs. The hero loops a rotating 3D threat globe with moving signal cards and orbiting icons; GitHub renders it as an animation, not a pointer-controlled canvas. Regenerate the animations from the repository root:
 
 ```bash
 python docs/render_readme_visuals.py
