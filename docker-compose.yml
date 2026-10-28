@@ -1,0 +1,177 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: fake-website-detector-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-typosquat}
+      POSTGRES_USER: ${POSTGRES_USER:-typosquat_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  certstream-server:
+    image: 0rickyy0/certstream-server-go
+    container_name: fake-website-detector-certstream
+    volumes:
+      - ./certstream_server_go/config.yml:/app/config/config.yaml:ro
+    expose:
+      - "8081"
+    restart: unless-stopped
+
+  db-init:
+    build: .
+    container_name: fake-website-detector-db-init
+    command:
+      - /bin/sh
+      - -c
+      - "alembic upgrade head && python -c 'from src.storage.db import init_db; init_db()'"
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB:-typosquat}
+      PGUSER: ${POSTGRES_USER:-typosquat_user}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-typosquat_user}:${POSTGRES_PASSWORD:-typosquat_pass}@db:5432/${POSTGRES_DB:-typosquat}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    build: .
+    container_name: fake-website-detector-api
+    command: ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB:-typosquat}
+      PGUSER: ${POSTGRES_USER:-typosquat_user}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-typosquat_user}:${POSTGRES_PASSWORD:-typosquat_pass}@db:5432/${POSTGRES_DB:-typosquat}
+      PYTHONUNBUFFERED: "1"
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+      - ./config:/app/config:ro
+    depends_on:
+      db:
+        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/system', timeout=3)"
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  monitor-worker:
+    build: .
+    container_name: fake-website-detector-worker
+    command: ["python", "-u", "-m", "src.ingest.ct_stream_client"]
+    environment:
+      CERTSTREAM_URL: ws://certstream-server:8081/full-stream
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB:-typosquat}
+      PGUSER: ${POSTGRES_USER:-typosquat_user}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-typosquat_user}:${POSTGRES_PASSWORD:-typosquat_pass}@db:5432/${POSTGRES_DB:-typosquat}
+      PYTHONUNBUFFERED: "1"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+      - ./reference_assets:/app/reference_assets
+      - ./config:/app/config:ro
+    depends_on:
+      certstream-server:
+        condition: service_started
+      db:
+        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json,time; from pathlib import Path; p=Path('/app/data/worker_health.json'); d=json.loads(p.read_text()); raise SystemExit(0 if d.get('state') == 'connected' and time.time() - d.get('updated_at', 0) < 120 else 1)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    container_name: fake-website-detector-dashboard
+    env_file:
+      - .env
+    command:
+      - streamlit
+      - run
+      - dashboard/app.py
+      - --server.port=8501
+      - --server.address=0.0.0.0
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB:-typosquat}
+      PGUSER: ${POSTGRES_USER:-typosquat_user}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-typosquat_user}:${POSTGRES_PASSWORD:-typosquat_pass}@db:5432/${POSTGRES_DB:-typosquat}
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "127.0.0.1:8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+      - ./reference_assets:/app/reference_assets
+      - ./config:/app/config:ro
+    depends_on:
+      monitor-worker:
+        condition: service_started
+      db-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  simulation-site:
+    image: python:3.12-alpine
+    container_name: fake-website-detector-simulation-site
+    working_dir: /app
+    command: ["python", "-m", "http.server", "8765", "--bind", "0.0.0.0"]
+    volumes:
+      - ./simulation_site:/app:ro
+    expose:
+      - "8765"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

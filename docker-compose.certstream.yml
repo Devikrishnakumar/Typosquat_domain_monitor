@@ -1,0 +1,15 @@
+services:
+  certstream-listener:
+    build:
+      context: .
+      dockerfile: Dockerfile.certstream
+    container_name: phishing_certstream_listener
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./reference_assets:/app/reference_assets
+    environment:
+      - DATABASE_URL=sqlite:///data/phishing_detector.db
+      - CERTSTREAM_URL=wss://certstream.calidog.io/
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}

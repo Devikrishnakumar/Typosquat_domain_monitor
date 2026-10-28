@@ -1,0 +1,23 @@
+[server]
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+greenColor = "#60A5FA"
+base = "dark"
+primaryColor = "#3B82F6"
+backgroundColor = "#08132100"
+secondaryBackgroundColor = "#13233A40"
+textColor = "#F2F7FF"
+borderColor = "#344B63"
+font = "sans serif"
+dataframeHeaderBackgroundColor = "#193C5E70"
+
+[theme.sidebar]
+backgroundColor = "#0A172850"
+secondaryBackgroundColor = "#14263B40"
+textColor = "#F2F7FF"
+borderColor = "#344B63"
+primaryColor = "#69D6FF"

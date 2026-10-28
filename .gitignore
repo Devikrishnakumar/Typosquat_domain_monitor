@@ -1,0 +1,46 @@
+.env
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+data/certstream_events.jsonl
+data/worker_health.json
+
+*.exe
+
+# Frontend dependencies and Python package build metadata
+components/**/node_modules/
+components/**/*.egg-info/
+
+# Standalone frontend build dependencies
+designpro_hero/node_modules/
+designpro_hero/dist/
+
+components/phishshield-threat-grid/build/
+
+# Local runtime, editor state, and review captures
+tmp/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+*.log
+data/*.tmp
+data/screenshots/*
+!data/screenshots/demo_paypal_high_risk.png
+!data/screenshots/demo_paypal_medium_risk.png
+!data/screenshots/demo_paypal_low_risk.png
+reports/*.pdf
+reference_assets/brands/*
+# Original duplicate animation imports (the site uses landing_page/public assets).
+/1.gif
+/search.gif
+
+# Credentials must never be published.
+.env.*
+!.env.example
+certstream_server_go/typobot-api.txt
+# Reference fixture used by the simulation UI and regression tests.
+!reference_assets/brands/paypal_com_reference.png

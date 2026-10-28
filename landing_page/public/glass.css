@@ -1,0 +1,29 @@
+/* Shared landing-page glass surfaces. Colors stay on borders and labels. */
+:root {--font-display:'General Sans',Manrope,sans-serif;--panel:rgba(12,30,48,.28);}
+.glass-card,.report-section,.report-step {
+ background:rgba(12,30,48,.28)!important;
+ background-image:none!important;
+ border:1px solid rgba(177,214,242,.30)!important;
+ border-radius:16px!important;
+ box-shadow:0 10px 30px rgba(0,9,22,.20)!important;
+ -webkit-backdrop-filter:blur(24px) saturate(115%)!important;
+ backdrop-filter:blur(24px) saturate(115%)!important;
+}
+.button.button-primary,.button.button-glass {
+ background:rgba(47,104,155,.24)!important;color:#edf6ff!important;
+ border:1px solid rgba(177,214,242,.40)!important;border-radius:12px!important;
+ box-shadow:0 4px 14px rgba(0,9,22,.12)!important;
+ -webkit-backdrop-filter:blur(16px)!important;backdrop-filter:blur(16px)!important;
+}
+.button.button-primary:hover,.button.button-glass:hover {
+ background:rgba(59,127,184,.34)!important;transform:none!important;
+ box-shadow:0 4px 14px rgba(0,9,22,.12)!important;
+}
+.domain-row,.capability-row {
+ background:rgba(15,37,58,.16)!important;
+ border-color:rgba(177,214,242,.18)!important;
+}
+.glass-card::before,.glass-card::after,.report-step::before,.art-glow {display:none!important;}
+@media(max-width:760px) {
+ .glass-card,.report-section,.report-step {backdrop-filter:blur(18px)!important;}
+}

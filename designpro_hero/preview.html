@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DesignPro — Become Product Leader</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          lineHeight: {
+            'tight-hero': '0.85',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Continuous 3-second animated shiny sweep effect */
+    @keyframes shinySweep {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .shiny-gradient-text {
+      background-image: linear-gradient(100deg, #64CEFB 0%, #64CEFB 32%, #ffffff 50%, #64CEFB 68%, #64CEFB 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      animation: shinySweep 3s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-black text-white antialiased font-sans m-0 p-0 overflow-x-hidden selection:bg-[#64CEFB]/30 selection:text-white">
+
+  <div class="relative w-full h-screen bg-[#000000] text-white overflow-hidden font-sans select-none">
+    
+    <!-- Background: Full-screen looping video background using CloudFront URL -->
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+    >
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <!-- Subtle Ambient Vignette -->
+    <div class="absolute inset-0 bg-black/35 z-[1] pointer-events-none"></div>
+
+    <!-- Main Content Layout Container -->
+    <div class="relative z-10 w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-between py-6 sm:py-8 lg:py-10">
+      
+      <!-- Navigation Bar -->
+      <header class="w-full flex items-center justify-between">
+        <!-- Logo: Circular design with white border (2px), containing smaller filled circle inside + text -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
+          </div>
+          <span class="text-white font-semibold text-lg sm:text-xl tracking-tight">
+            DesignPro
+          </span>
+        </a>
+
+        <!-- Desktop Nav: Rounded pill container with gray-700 border -->
+        <nav class="hidden lg:flex items-center gap-1 px-4 py-2 rounded-full border border-gray-700 bg-black/40 backdrop-blur-md">
+          <a href="#" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">Home</a>
+          <a href="#about" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">About Us</a>
+          <a href="#courses" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">Courses</a>
+          <a href="#instructors" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">Instructors</a>
+          <a href="#testimonials" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">Testimonials</a>
+          <a href="#blog" class="px-3.5 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">Blog</a>
+          <a href="#contact" class="group flex items-center gap-1.5 pl-3.5 pr-2 py-1.5 text-sm text-white/80 hover:text-white transition-colors duration-200">
+            <span>Contact us</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Icon (screens < lg) -->
+        <div class="lg:hidden flex items-center">
+          <button id="menu-btn" class="p-2 rounded-full border border-gray-700 bg-black/50 text-white/80 hover:text-white focus:outline-none">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Top Section (below nav): Two-column layout on large screens, stacked on mobile -->
+      <section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 pt-4 sm:pt-6">
+        <div class="lg:col-span-6">
+          <p class="text-white/80 text-sm md:text-base leading-relaxed max-w-xl font-normal">
+            We deliver transformative programs that empower emerging product designers with cutting-edge expertise and vision to thrive globally.
+          </p>
+        </div>
+        <div class="lg:col-span-6 flex justify-start lg:justify-end">
+          <p class="text-white/80 text-sm md:text-base font-normal tracking-tight lg:text-right">
+            8000+ Talented Designers Launched !
+          </p>
+        </div>
+      </section>
+
+      <!-- Hero Section (center): Main Heading + ShinyText + CTA -->
+      <main class="w-full my-auto flex flex-col items-center justify-center text-center py-6 sm:py-10">
+        <!-- Small uppercase text above heading -->
+        <div class="mb-3 sm:mb-5">
+          <span class="text-white/80 text-xs md:text-sm tracking-tight uppercase font-medium">
+            Seats for Next Program Opening Soon
+          </span>
+        </div>
+
+        <!-- Main Heading: Line height 0.85, tracking-tighter -->
+        <h1 class="text-5xl sm:text-7xl md:text-8xl xl:text-9xl tracking-tighter leading-[0.85] font-medium mb-8 sm:mb-12">
+          <span class="block text-white font-medium">
+            Become
+          </span>
+          <span class="block">
+            <span class="shiny-gradient-text font-medium">Product Leader.</span>
+          </span>
+        </h1>
+
+        <!-- CTA Button: Black background, hover: gray-900, rounded-full shape -->
+        <a
+          href="#apply"
+          class="group inline-flex items-center gap-3 bg-black hover:bg-gray-900 border border-gray-800 text-white font-medium text-sm md:text-base rounded-full px-6 md:px-8 py-3 md:py-4 transition-all duration-300 shadow-2xl hover:border-gray-700"
+        >
+          <span>Apply for Next Enrollment</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1.5"></i>
+        </a>
+      </main>
+
+      <!-- Footer spacer -->
+      <footer class="w-full py-2 flex items-center justify-between text-xs text-white/40">
+        <span>&copy; 2026 DesignPro Inc. All rights reserved.</span>
+        <span>Global Product Design Accelerator</span>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

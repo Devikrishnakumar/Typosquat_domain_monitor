@@ -1,0 +1,110 @@
+.ps-threat-grid { color: #eaf3fb; font-family: Manrope,sans-serif; border: 1px solid #b5d5ea4d; border-top: 2px solid #93c5fd; border-radius: 8px; background: rgba(14, 35, 56, .38); -webkit-backdrop-filter: blur(22px) saturate(125%); backdrop-filter: blur(22px) saturate(125%); box-shadow: inset 0 1px 0 #e2f0ff26, 0 12px 36px #0003; overflow: hidden; animation: ps-grid-in .3s ease-out; }
+.ps-grid-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; border-bottom: 1px solid #b5d5ea30; }
+.ps-grid-title { display: flex; gap: 9px; align-items: center; font-weight: 650; font-size: 14px; }
+.ps-grid-title svg { width: 19px; height: 19px; color: #93c5fd; }
+.ps-count { font-size: 12px; color: #b8ccdc; }
+.ps-grid { width: 100%; min-height: 140px; }
+.ps-grid .ag-root-wrapper { border: 0; border-radius: 0; background: transparent; }
+.ps-grid .ag-root,.ps-grid .ag-body,.ps-grid .ag-body-viewport,.ps-grid .ag-center-cols-viewport { background: transparent; }
+.ps-grid .ag-header-cell-text { font-weight: 650; letter-spacing: .045em; text-transform: uppercase; }
+.ps-grid .ag-row { cursor: pointer; transition: background-color .18s ease, transform .3s ease; }
+.ps-grid .ag-cell { display: flex; align-items: center; }
+.ps-grid .ps-domain { font-weight: 650; color: #f2f8ff; }
+.ps-grid .ps-selected-row { background: #93c5fd21; box-shadow: inset 3px 0 #93c5fd; }
+.ps-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 4px; border: 1px solid; font-size: 11px; line-height: 1.2; font-weight: 650; }
+.ps-high { color: #ffabb0; background: #ff7b8714; border-color: #ff7b8740; }
+.ps-medium { color: #f3cc87; background: #f3cc8712; border-color: #f3cc8740; }
+.ps-low,.ps-live { color: #93c5fd; background: #93c5fd10; border-color: #93c5fd35; }
+.ps-offline { color: #b7c6d5; background: #b7c6d509; border-color: #b7c6d52a; }
+.ps-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #93c5fd; }
+.ps-risk { display: flex; align-items: center; gap: 10px; width: 100%; font-variant-numeric: tabular-nums; }
+.ps-risk-track { width: 65px; height: 5px; border-radius: 2px; background: #ffffff12; overflow: hidden; }
+.ps-risk-fill { display: block; height: 100%; transform-origin: left; animation: ps-risk-in .5s ease-out both; }
+.ps-open { width: 28px; height: 28px; padding: 0; border-radius: 4px; border: 1px solid #93c5fd30; color: #93c5fd; background: #93c5fd08; cursor: pointer; font-size: 18px; }
+.ps-open:hover { background: #93c5fd20; }
+.ps-open:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+.ps-grid-footer { color: #a8bece; font-size: 11px; padding: 10px 18px; border-top: 1px solid #b5d5ea26; }
+@keyframes ps-grid-in { from { opacity: 0; translate: 0 7px; } to { opacity: 1; translate: 0 0; } }
+@keyframes ps-risk-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.ps-motion-off,.ps-motion-off * { animation: none !important; transition: none !important; }
+@media(prefers-reduced-motion:reduce) { .ps-threat-grid,.ps-threat-grid * { animation: none !important; transition: none !important; } }
+
+.ps-security-art { position:relative;min-height:350px;color:#bfdbfe;font-family:Manrope,sans-serif;overflow:hidden;border:1px solid #c4ddff26;border-radius:22px;background:linear-gradient(140deg,#c4ddff0d,#11376722);box-shadow:inset 0 1px #ffffff14,0 20px 50px #0002; }
+.ps-art-header { display:flex;align-items:center;gap:8px;padding:18px 20px;font-size:10px;font-weight:650;letter-spacing:.08em;color:#c1d9f6; }
+.ps-art-header>span:last-child { margin-left:auto;font-size:8px;color:#7996b8; }
+.ps-art-dot,.ps-art-pin { display:inline-block;width:5px;height:5px;border-radius:50%;background:#8bbdff;box-shadow:0 0 12px #60a5fa66; }
+
+.ps-radar-scene { position:relative;height:278px;overflow:hidden; }
+.ps-radar-grid { position:absolute;inset:8px 24px;background-image:linear-gradient(#60a5fa10 1px,transparent 1px),linear-gradient(90deg,#60a5fa10 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle,#000,transparent 72%); }
+.ps-radar-animation { position:absolute;width:250px;height:250px;left:50%;top:12px;transform:translateX(-50%);filter:drop-shadow(0 0 14px #3b82f63b); }
+.ps-radar-animation svg { width:100%!important;height:100%!important; }
+.ps-radar-crosshair { position:absolute;width:250px;height:250px;left:50%;top:12px;transform:translateX(-50%);background:linear-gradient(90deg,transparent calc(50% - .5px),#93c5fd26 50%,transparent calc(50% + .5px)),linear-gradient(transparent calc(50% - .5px),#93c5fd26 50%,transparent calc(50% + .5px));border-radius:50%; }
+.ps-radar-bearing { position:absolute;font:500 8px/1.4 Manrope,sans-serif;color:#6c8bad;letter-spacing:.08em; }
+.ps-bearing-n { left:50%;top:0;transform:translateX(-50%); }.ps-bearing-s { left:50%;bottom:0;transform:translateX(-50%); }.ps-bearing-e { right:18px;top:48%; }.ps-bearing-w { left:18px;top:48%; }
+.ps-radar-blip { position:absolute;width:5px;height:5px;background:#a8d2ff;border-radius:50%;box-shadow:0 0 9px #60a5fa;animation:ps-radar-contact 3s ease-out infinite; }
+.ps-radar-blip::after { content:'';position:absolute;inset:-5px;border:1px solid #93c5fd88;border-radius:50%;animation:ps-radar-ping 3s ease-out infinite; }
+.ps-blip-one { left:calc(50% + 52px);top:71px;animation-delay:.3s; }.ps-blip-one::after { animation-delay:.3s; }
+.ps-blip-two { left:calc(50% - 62px);top:163px;animation-delay:1.5s; }.ps-blip-two::after { animation-delay:1.5s; }
+.ps-blip-three { left:calc(50% + 31px);top:207px;animation-delay:2.3s; }.ps-blip-three::after { animation-delay:2.3s; }
+.ps-scan-signals { display:flex;justify-content:center;gap:18px;padding:18px 12px 14px;color:#adc7e4;font-size:10px; }
+.ps-scan-signals>span { display:flex;align-items:center;gap:7px; }
+.ps-scan-signals i { width:4px;height:4px;border-radius:1px;background:#60a5fa;animation:ps-signal-pulse 3s ease-in-out infinite; }
+.ps-scan-signals>span:nth-child(2) i { animation-delay:1s; }.ps-scan-signals>span:nth-child(3) i { animation-delay:2s; }
+.ps-scan-credit { display:flex;justify-content:space-between;gap:12px;border-top:1px solid #a9cfff15;padding:10px 16px;color:#7694b4;font-size:8px; }
+.ps-scan-credit a { color:#8faecf;text-decoration:none; }.ps-scan-credit a:hover { color:#c0dcff; }
+@keyframes ps-radar-contact { 0%,70%,100% { opacity:.18; } 15%,35% { opacity:1; } }
+@keyframes ps-radar-ping { 0% { transform:scale(.4);opacity:0; } 15% { opacity:1; } 60%,100% { transform:scale(1.8);opacity:0; } }
+@keyframes ps-signal-pulse { 0%,100% { opacity:.3; } 45% { opacity:1; } }
+.ps-art-reduced * { animation:none!important; }
+@media(prefers-reduced-motion:reduce) { .ps-security-art * { animation:none!important; } }
+@media(max-width:480px) { .ps-radar-animation,.ps-radar-crosshair { width:220px;height:220px;top:25px; }.ps-bearing-e { right:8px; }.ps-bearing-w { left:8px; }.ps-scan-signals { gap:10px;font-size:9px; }.ps-scan-credit { font-size:7px;gap:8px; } }
+
+.ps-radar-sweep-beam { position:absolute;width:230px;height:230px;left:50%;top:22px;border-radius:50%;pointer-events:none;transform:translateX(-50%);background:conic-gradient(from 0deg,transparent 0deg,transparent 255deg,#3b82f608 275deg,#3b82f633 315deg,#60a5fa88 355deg,#bfdbfecc 359deg,transparent 360deg);animation:ps-radar-sweep-turn 3s linear infinite;mix-blend-mode:screen; }
+@keyframes ps-radar-sweep-turn { to { transform:translateX(-50%) rotate(360deg); } }
+.ps-art-reduced .ps-radar-sweep-beam { animation:none!important; }
+@media(prefers-reduced-motion:reduce) { .ps-radar-sweep-beam { animation:none!important; } }
+@media(max-width:480px) { .ps-radar-sweep-beam { width:202px;height:202px;top:34px; } }
+
+/* Matte neumorphic frame with glass rows and no spark/sweep effects. */
+.ps-threat-grid {border:1px solid #9ec5e526;border-radius:20px;box-shadow:8px 8px 22px #00071170,-5px -5px 16px #6899c617;animation:none;}
+.ps-security-art {background:#152b40ad;border:1px solid #9ec5e51f;border-radius:20px;box-shadow:8px 8px 22px #00071166,-5px -5px 16px #6899c617;}
+.ps-security-art *,.ps-threat-grid * {animation:none!important;}
+.ps-radar-sweep-beam,.ps-radar-blip,.ps-radar-blip::after {display:none!important;}
+.ps-art-dot,.ps-art-pin,.ps-scan-signals i {box-shadow:none!important;}
+.ps-radar-animation {filter:none!important;}
+.ps-open {border-radius:8px;background:#19344bb3;box-shadow:3px 3px 7px #00071155,-2px -2px 6px #6899c612;}
+.ps-open:active {box-shadow:inset 3px 3px 7px #00071166,inset -2px -2px 6px #6899c612;}
+
+/* Continuous radar motion, without flashing markers, white streaks or glow. */
+.ps-security-art {
+ background:rgba(13,32,50,.18);border:1px solid #38516a;border-top:4px solid #526e87;
+ box-shadow:0 4px 0 #071523,6px 8px 18px #00071155,inset 0 2px 3px #00071155;
+}
+.ps-security-art .ps-radar-sweep-beam {
+ display:block!important;mix-blend-mode:normal;filter:none;box-shadow:none;
+ background:conic-gradient(from 0deg,transparent 0deg 300deg,rgba(90,141,187,.04) 300deg,rgba(90,141,187,.18) 358deg,transparent 360deg);
+ animation:ps-radar-sweep-turn 7s linear infinite!important;
+}
+.ps-threat-grid {border-top:4px solid #526e87;box-shadow:0 4px 0 #071523,7px 9px 20px #00071166;}
+.ps-security-art.ps-art-reduced .ps-radar-sweep-beam {animation:none!important;}
+@media(prefers-reduced-motion:reduce) {.ps-security-art .ps-radar-sweep-beam {animation:none!important;}}
+
+.ps-native-radar {height:278px;display:grid;place-items:center;padding:8px;}
+.ps-native-radar svg {width:100%;height:100%;max-width:320px;overflow:visible;}
+.ps-native-radar,.ps-native-radar * {filter:none!important;box-shadow:none!important;}
+.ps-security-art {background:rgba(18,39,57,.48);box-shadow:7px 7px 15px #0008,inset 2px 2px 4px #ffffff06,inset -3px -3px 7px #0004;backdrop-filter:none!important;}
+
+/* Neutral faces; neumorphic definition is confined to the frame. */
+.ps-security-art,.ps-threat-grid {background:rgba(15,18,24,.38);box-shadow:6px 6px 14px #0009,-3px -3px 9px #ffffff06;}
+
+/* Every component face uses the same glass treatment as the application. */
+.ps-security-art,.ps-threat-grid {
+ background:rgba(12,30,48,.24)!important;
+ border:1px solid rgba(177,214,242,.28)!important;
+ box-shadow:0 10px 30px rgba(0,9,22,.20)!important;
+ border-radius:16px!important;
+ -webkit-backdrop-filter:blur(24px) saturate(115%)!important;
+ backdrop-filter:blur(24px) saturate(115%)!important;
+}
+.ps-grid-top,.ps-grid-footer {background:transparent!important;}
+.ps-open {background:rgba(28,66,96,.24);border:1px solid #b1d6f247;box-shadow:none;}

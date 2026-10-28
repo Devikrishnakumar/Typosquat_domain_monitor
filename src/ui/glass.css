@@ -1,0 +1,111 @@
+/* One surface system for both Streamlit applications and all their pages. */
+:root {
+ --ps-glass-face:rgba(12,30,48,.30);
+ --ps-glass-nested:rgba(15,37,58,.20);
+ --ps-glass-border:rgba(177,214,242,.28);
+ --ps-glass-shadow:0 10px 30px rgba(0,9,22,.20);
+ --ps-glass-blur:blur(24px) saturate(115%);
+}
+html body .stApp :is(.command-header,.section-card,.filter-panel,.metric-box,.metric-card,
+ .risk-box,.stream-row,.stream-row-match,.status-hud-glass,.simulation-note,
+ .slot-card,.slot-card-empty,.threat-card,.threat-card-high,.threat-card-med,.threat-card-low,
+ .scanner-shell,.report-card,.evidence-card,.brand-card,.dashboard-card,.comparison-card,
+ .info-card,.result-card,.glass-card,.ps-report-step,.ps-task-loading,.st-key-explorer_hero,
+ .st-key-sidebar_monitor_status),
+html body .stApp [data-testid='stVerticalBlock'][data-test-scroll-behavior]:not([class*='st-key-navigation']):not([class*='st-key-menu_']),
+html body .stApp :is([data-testid='stMetric'],[data-testid='stExpander'],[data-testid='stForm'],
+ [data-testid='stDataFrame'],[data-testid='stTable'],[data-testid='stAlert'],
+ [data-testid='stVerticalBlockBorderWrapper'],[data-testid='stJson'],[data-testid='stCode'],
+ [data-testid='stPopoverBody']),
+html body .stApp [data-testid='stMarkdownContainer'] > div[style*='background:'] {
+ background:var(--ps-glass-face)!important;
+ background-image:none!important;
+ border:1px solid var(--ps-glass-border)!important;
+ border-radius:16px!important;
+ box-shadow:var(--ps-glass-shadow)!important;
+ -webkit-backdrop-filter:var(--ps-glass-blur)!important;
+ backdrop-filter:var(--ps-glass-blur)!important;
+ color:#f2f7ff!important;
+}
+html body .stApp .metric-box[class*='m-'] {
+ border-top:3px solid var(--tone,var(--ps-glass-border))!important;
+}
+html body .stApp .metric-box:hover,html body .stApp .slot-card:hover,
+html body .stApp .threat-card:hover {
+ background:rgba(20,45,68,.34)!important;
+ box-shadow:var(--ps-glass-shadow)!important;
+ transform:none!important;translate:none!important;scale:1!important;
+}
+/* Transparent inner layers keep nested native widgets from hiding the glass. */
+html body .stApp :is([data-testid='stMetric'],[data-testid='stTable'],[data-testid='stExpander']) > div,
+html body .stApp [data-testid='stExpander'] details,
+html body .stApp [data-testid='stExpander'] summary,
+html body .stApp :is(input,textarea),
+html body .stApp [data-baseweb='input'] > div {
+ background:transparent!important;
+}
+html body .stApp [data-testid='stSidebar'] {
+ background:rgba(10,28,47,.32)!important;
+ -webkit-backdrop-filter:blur(26px) saturate(115%)!important;
+ backdrop-filter:blur(26px) saturate(115%)!important;
+ border-right:1px solid var(--ps-glass-border)!important;
+ box-shadow:none!important;
+}
+html body .stApp :is([data-baseweb='input'],[data-baseweb='select'] > div,
+ [data-testid='stTextArea'] > div,[data-testid='stNumberInput'] > div,
+ [data-testid='stFileUploaderDropzone'],[data-testid='stDateInput'] > div),
+html body .stApp :is([data-testid='stButton'],[data-testid='stDownloadButton'],
+ [data-testid='stFormSubmitButton'],[data-testid='stLinkButton']) > button,
+html body .stApp [data-testid='stSidebar'] .st-key-navigation_panel button {
+ background:var(--ps-glass-nested)!important;
+ border:1px solid var(--ps-glass-border)!important;
+ border-radius:12px!important;
+ box-shadow:0 4px 14px rgba(0,9,22,.12)!important;
+ -webkit-backdrop-filter:blur(16px)!important;
+ backdrop-filter:blur(16px)!important;
+ color:#edf6ff!important;filter:none!important;transform:none!important;
+}
+html body .stApp [data-testid='stButton'] > button[kind='primary'],
+html body .stApp [data-testid='stBaseButton-primary'],
+html body .stApp [data-testid='stSidebar'] .st-key-navigation_panel button[data-testid='stBaseButton-primary'] {
+ background:rgba(57,127,186,.28)!important;
+ border-color:rgba(148,201,244,.60)!important;
+}
+html body .stApp [data-testid='stButton'] > button[kind='primary'] p,
+html body .stApp [data-testid='stBaseButton-primary'] p,
+html body .stApp [data-testid='stDownloadButton'] > button p {color:#edf6ff!important;}
+html body .stApp [data-testid='stTabs'] button {
+ background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+html body [data-baseweb='popover'] > div {
+ background:rgba(13,32,51,.76)!important;
+ border:1px solid var(--ps-glass-border)!important;
+ -webkit-backdrop-filter:blur(24px)!important;backdrop-filter:blur(24px)!important;
+}
+/* Canvas data grids read these theme tokens as well as the global alpha theme. */
+html body .stApp [data-testid='stDataFrame'] {
+ --st-background-color:transparent;
+ --st-secondary-background-color:rgba(15,37,58,.24);
+ overflow:hidden!important;
+}
+@media(max-width:760px) {
+ :root {--ps-glass-blur:blur(18px) saturate(110%);}
+}
+
+html body .stApp :is([data-testid='stJson'],[data-testid='stCode']) > div {
+ background:transparent!important;
+}
+html body [data-testid='stDialog'] [role='dialog'] {
+ background:rgba(12,30,48,.48)!important;
+ border:1px solid var(--ps-glass-border)!important;border-radius:16px!important;
+ -webkit-backdrop-filter:blur(26px)!important;backdrop-filter:blur(26px)!important;
+ box-shadow:var(--ps-glass-shadow)!important;
+}
+
+html body .stApp .status-hud-glass span {box-shadow:none!important;}
+html body .stApp .ps-stream-status,html body .stApp .ps-hero-tags span {
+ background:var(--ps-glass-nested)!important;
+ border:1px solid var(--ps-glass-border)!important;
+ -webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;
+ box-shadow:none!important;
+}

@@ -1,0 +1,16 @@
+/* Border accents and static behavior shared with the glass surface layer. */
+.stApp .metric-box.m-purple {--tone:#a99acb;}
+.stApp .metric-box.m-blue {--tone:#8eb5d6;}
+.stApp .metric-box.m-amber {--tone:#d3b387;}
+.stApp .metric-box.m-red {--tone:#d7a0a5;}
+.stApp .metric-box.m-green {--tone:#9abfb0;}
+body::before {content:none!important;display:none!important;}
+.stApp *, .stApp *::before, .stApp *::after {animation:none!important;text-shadow:none!important;}
+.stApp .command-header::after,.stApp .section-card::after,.stApp .filter-panel::after,
+.stApp .metric-box::before,.stApp .metric-box::after,.stApp .metric-card::after,
+.stApp .risk-box::after,.stApp .stream-row::after,.stApp .status-hud-glass::after,
+.stApp .simulation-note::after {display:none!important;content:none!important;}
+.stApp .scanner-laser,.stApp .sphere-glow {display:none!important;}
+.stApp .ps-status-pip,.stApp .ps-stream-connected .ps-status-pip,
+.stApp .beacon-live,.stApp .beacon-alert {box-shadow:none!important;}
+#ps-video-background > div {background:rgba(15,64,112,.16)!important;filter:none!important;}

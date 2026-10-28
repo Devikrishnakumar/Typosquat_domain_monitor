@@ -1,0 +1,9 @@
+{
+  "name": "fake-website-detector-landing",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Responsive CyberSentinel landing page built with HTML, CSS, and vanilla JavaScript",
+  "scripts": {
+    "start": "python server.py"
+  }
+}

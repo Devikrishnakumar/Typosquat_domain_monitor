@@ -1,0 +1,6 @@
+# CyberSentinel Brand Configuration
+brands:
+  - name: "PayPal"
+    official_domain: "paypal.com"
+brand_name: "PayPal"
+official_domain: "paypal.com"

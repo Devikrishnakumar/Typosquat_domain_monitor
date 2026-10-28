@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phishshield-threat-grid"
+version = "0.0.1"
+description = "Animated evidence table for PhishShield"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "AG-GRID-LICENSE.txt", "USEANIMATIONS-LICENSE.txt", "LOTTIE-LICENSE.txt", "RADAR-LICENSE.txt"]
+requires-python = ">=3.10"
+authors = [{ name = "PhishShield", email = "dev@phishshield.local" }]
+dependencies = ["streamlit >= 1.51"]
+
+[tool.setuptools.packages.find]
+include = ["phishshield_threat_grid*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+phishshield_threat_grid = ["frontend/build/**/*", "pyproject.toml"]

@@ -1,0 +1,17 @@
+﻿venv/
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/screenshots/*.png
+reports/*.pdf
+reference_assets/*.png
+.env
+
+.venv/
+**/node_modules/
+**/*.egg-info/
+
+# Exclude packaging staging output; retain frontend/build runtime assets.
+components/phishshield-threat-grid/build/
+designpro_hero/dist/

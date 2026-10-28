@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="270" height="62" viewBox="0 0 270 62" fill="none">
+  <defs>
+    <linearGradient id="shield" x1="8" y1="8" x2="53" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#75F1E0"/>
+      <stop offset=".52" stop-color="#51D7F2"/>
+      <stop offset="1" stop-color="#788BFF"/>
+    </linearGradient>
+    <linearGradient id="wordmark" x1="74" y1="18" x2="245" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5FCFF"/>
+      <stop offset="1" stop-color="#A9E8FF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="31" cy="31" r="25" fill="#0C263A" stroke="#6CE7F4" stroke-opacity=".35"/>
+  <circle cx="31" cy="31" r="20" stroke="#74DDF3" stroke-opacity=".42"/>
+  <path d="M31 12 45 18v12c0 9-5.8 15.7-14 20-8.2-4.3-14-11-14-20V18l14-6Z" fill="#0E3850" stroke="url(#shield)" stroke-width="2.3" stroke-linejoin="round"/>
+  <path d="m24 30 5 5 9-10" stroke="#91F5E7" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M31 6v8M31 48v8M6 31h8M48 31h8" stroke="#70DFF0" stroke-opacity=".5" stroke-linecap="round"/>
+  <text x="69" y="29" fill="url(#wordmark)" font-family="Inter, Segoe UI, sans-serif" font-size="17" font-weight="800" letter-spacing="1.2">CYBERSENTINEL</text>
+  <text x="70" y="46" fill="#90AFC4" font-family="Inter, Segoe UI, sans-serif" font-size="8.5" font-weight="700" letter-spacing="2">BRAND PROTECTION</text>
+</svg>
